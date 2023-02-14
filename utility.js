@@ -1,3 +1,5 @@
+export const FPS = 30;
+
 export const can = document.getElementById("canvas");
 export const con = can.getContext("2d");
 can.width = 300;

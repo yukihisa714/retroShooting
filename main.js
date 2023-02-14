@@ -1,4 +1,4 @@
-import { can, con, random, sin, cos } from "./utility.js";
+import { can, con, random, sin, cos, FPS } from "./utility.js";
 import { updateStars } from "./star.js";
 import { updateOwnMachine } from "./own-machine.js";
 import { updateMachineGun } from "./weapon.js";
@@ -8,9 +8,9 @@ function mainLoop() {
 
     updateStars();
 
-    updateOwnMachine();
-
     updateMachineGun();
+
+    updateOwnMachine();
 }
 
-setInterval(mainLoop, 1000 / 30);
+setInterval(mainLoop, 1000 / FPS);
