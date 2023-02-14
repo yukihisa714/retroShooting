@@ -43,7 +43,7 @@ class OwnMachine {
     }
 }
 
-let ownMachine = new OwnMachine();
+export let ownMachine = new OwnMachine();
 
 export const updateOwnMachine = () => {
     ownMachine.draw();

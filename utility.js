@@ -14,3 +14,6 @@ document.onkeydown = (e) => {
 document.onkeyup = (e) => {
     keys[e.key] = false;
 }
+
+export const sin = (theta) => Math.sin(Math.PI / 180 * theta);
+export const cos = (theta) => Math.cos(Math.PI / 180 * theta);
