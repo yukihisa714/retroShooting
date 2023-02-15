@@ -1,9 +1,11 @@
-export const FPS = 30;
+export const FPS = 60;
+export const CAN_W = 300;
+export const CAN_H = 300;
 
 export const can = document.getElementById("canvas");
 export const con = can.getContext("2d");
-can.width = 300;
-can.height = 300;
+can.width = CAN_W;
+can.height = CAN_H;
 can.style.background = "black";
 
 export const random = (min, max) => Math.random() * (max - min) + min;

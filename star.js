@@ -1,4 +1,4 @@
-import { can, con, random } from "./utility.js";
+import { can, CAN_H, con, FPS, random } from "./utility.js";
 
 const STARS_NUM = 100;
 const STAR_SIZE_MIN = 0.5;
@@ -10,7 +10,7 @@ class Star {
         this.x = x;
         this.y = y;
         this.size = size;
-        this.speed = this.size / 2;
+        this.speed = this.size * 15 / FPS;
         this.color = `rgb(${~~random(150, 255)},${~~random(150, 255)},${~~random(150, 255)})`;
     }
 
@@ -23,7 +23,7 @@ class Star {
         con.fillRect(this.x, this.y, this.size, this.size);
     }
 
-    isInCanvas = () => this.y < can.height;
+    isInCanvas = () => this.y < CAN_H;
 }
 
 const stars = [];

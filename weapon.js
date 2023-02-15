@@ -1,19 +1,21 @@
 import { can, con, keys, sin, cos, random, FPS } from "./utility.js";
-import { ownMachine } from "./own-machine.js";
+import { plmc } from "./players-machine.js";
 
 const MG_BULLET_W = 2;
 const MG_BULLET_H = 6;
-const MG_MV = 10;
+const MG_MV_PPS = 300;
+const MG_MV_PPF = MG_MV_PPS / FPS;
 const MG_RPM = 600;
-const MG_SPR = FPS / (MG_RPM / 60);
+const MG_SPR = ~(FPS / (MG_RPM / 60));
+const MG_MOA = 5;
 
-class MachineGunBullet {
+class MgBullet {
     constructor(x, y, direction) {
         this.x = x;
         this.y = y;
         this.w = MG_BULLET_W;
         this.h = MG_BULLET_H;
-        this.speed = MG_MV;
+        this.speed = MG_MV_PPF;
         this.direction = direction;
         this.moveDiffelence = {
             x: sin(this.direction) * this.speed,
@@ -42,28 +44,28 @@ class MachineGunBullet {
     isInCanvas = () => 0 < this.y + this.h;
 }
 
-const machineGunBullets = [];
+const mgBullets = [];
 
 let count = 0;
 
-export const updateMachineGun = () => {
+export const updateMg = () => {
     if (keys[" "]) {
         count++;
         if (count % MG_SPR === 1) {
-            machineGunBullets.push(new MachineGunBullet(ownMachine.x, ownMachine.y, random(-5, 5)));
+            mgBullets.push(new MgBullet(plmc.x, plmc.y, random(-MG_MOA / 2, MG_MOA / 2)));
         }
     }
     else count = 0;
 
-    con.fillText(machineGunBullets.length, 10, 10);
+    con.fillText(mgBullets.length, 10, 10);
 
     let i = 0;
-    while (i < machineGunBullets.length) {
-        const bullet = machineGunBullets[i];
+    while (i < mgBullets.length) {
+        const bullet = mgBullets[i];
         bullet.draw();
         bullet.move();
         if (!bullet.isInCanvas()) {
-            machineGunBullets.splice(i, 1);
+            mgBullets.splice(i, 1);
         }
         else i++;
     }

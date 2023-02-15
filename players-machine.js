@@ -1,12 +1,15 @@
-import { can, con, keys } from "./utility.js"
+import { can, con, FPS, keys } from "./utility.js"
 
-class OwnMachine {
+const PLMC_PPS = 150;
+const PLMC_PPF = PLMC_PPS / FPS;
+
+class Plmc {
     constructor() {
         this.x = can.width / 2;
         this.y = can.height * 0.8;
         this.w = 20;
         this.h = 30;
-        this.speed = 5;
+        this.speed = PLMC_PPF;
     }
 
     move() {
@@ -43,9 +46,9 @@ class OwnMachine {
     }
 }
 
-export let ownMachine = new OwnMachine();
+export let plmc = new Plmc();
 
-export const updateOwnMachine = () => {
-    ownMachine.draw();
-    ownMachine.move();
+export const updatePlmc = () => {
+    plmc.draw();
+    plmc.move();
 }
