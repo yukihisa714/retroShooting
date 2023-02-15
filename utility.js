@@ -21,3 +21,5 @@ document.onkeyup = (e) => {
 
 export const sin = (theta) => Math.sin(Math.PI / 180 * theta);
 export const cos = (theta) => Math.cos(Math.PI / 180 * theta);
+
+export const sqrt = (x) => Math.sqrt(x);

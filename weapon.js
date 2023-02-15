@@ -1,4 +1,4 @@
-import { can, con, keys, sin, cos, random, FPS } from "./utility.js";
+import { con, keys, sin, cos, random, FPS } from "./utility.js";
 import { plmc } from "./players-machine.js";
 
 const MG_BULLET_W = 2;

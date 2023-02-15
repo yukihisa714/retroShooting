@@ -14,22 +14,22 @@ class Plmc {
 
     move() {
         if (keys["ArrowUp"]) {
-            if (0 < this.y) {
+            if (this.speed <= this.y) {
                 this.y -= this.speed;
             }
         }
         if (keys["ArrowDown"]) {
-            if (this.y < can.height - this.h) {
+            if (this.y + this.h <= can.height - this.speed) {
                 this.y += this.speed;
             }
         }
         if (keys["ArrowLeft"]) {
-            if (this.w / 2 < this.x) {
+            if (this.speed <= this.x - this.w / 2) {
                 this.x -= this.speed;
             }
         }
         if (keys["ArrowRight"]) {
-            if (this.x < can.width - this.w / 2) {
+            if (this.x + this.w / 2 < can.width - this.speed) {
                 this.x += this.speed;
             }
         }
