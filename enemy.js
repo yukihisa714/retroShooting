@@ -1,4 +1,4 @@
-import { CAN_H, CAN_W, con, FPS, sqrt } from "./utility.js";
+import { CAN_H, CAN_W, con, FPS, frame, sqrt } from "./utility.js";
 import { plmc } from "./players-machine.js";
 
 const ENEMY_PPS = 100;
@@ -36,11 +36,11 @@ class Enemy {
     }
 }
 
-let enemy = new Enemy();
-// const enemies = [];
+// let enemy = new Enemy();
+const enemies = [];
 
 export const updateEnemy = () => {
-    enemy.move();
-    enemy.draw();
-    // if ()
+    if (frame % FPS === 0) {
+        enemies.push(new Enemy());
+    }
 };
