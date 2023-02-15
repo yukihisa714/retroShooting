@@ -1,3 +1,6 @@
+export let frame = 0;
+export const incrementFrame = () => { frame++; };
+
 export const FPS = 60;
 export const CAN_W = 300;
 export const CAN_H = 300;
@@ -14,10 +17,10 @@ export const keys = {};
 document.onkeydown = (e) => {
     // console.log(e.key);
     keys[e.key] = true;
-}
+};
 document.onkeyup = (e) => {
     keys[e.key] = false;
-}
+};
 
 export const sin = (theta) => Math.sin(Math.PI / 180 * theta);
 export const cos = (theta) => Math.cos(Math.PI / 180 * theta);

@@ -9,6 +9,8 @@ const MG_RPM = 600;
 const MG_SPR = ~(FPS / (MG_RPM / 60));
 const MG_MOA = 5;
 
+const MG_DAMAGE = 20;
+
 class MgBullet {
     constructor(x, y, direction) {
         this.x = x;
@@ -25,6 +27,7 @@ class MgBullet {
             x: -sin(this.direction) * this.h,
             y: cos(this.direction) * this.h,
         };
+        this.damage = MG_DAMAGE;
     }
 
     move() {
@@ -42,6 +45,10 @@ class MgBullet {
     }
 
     isInCanvas = () => 0 < this.y + this.h;
+
+    isCollisionEnemy = () => {
+
+    }
 }
 
 const mgBullets = [];

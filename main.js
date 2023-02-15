@@ -1,11 +1,13 @@
-import { can, con, FPS } from "./utility.js";
+import { incrementFrame, FPS, CAN_H, CAN_W, con } from "./utility.js";
 import { updateStars } from "./star.js";
 import { updatePlmc } from "./players-machine.js";
 import { updateMg } from "./weapon.js";
 import { updateEnemy } from "./enemy.js";
 
 function mainLoop() {
-    con.clearRect(0, 0, can.width, can.height);
+    incrementFrame();
+
+    con.clearRect(0, 0, CAN_W, CAN_H);
 
     updateStars();
 

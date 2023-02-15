@@ -37,8 +37,10 @@ class Enemy {
 }
 
 let enemy = new Enemy();
+// const enemies = [];
 
 export const updateEnemy = () => {
     enemy.move();
     enemy.draw();
+    // if ()
 };
