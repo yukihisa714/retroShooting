@@ -1,16 +1,29 @@
-import { CAN_H, CAN_W, con, FPS, frame, sqrt } from "./utility.js";
+import { CAN_H, CAN_W, con, drawHpGauge, FPS, frame, random, sqrt } from "./utility.js";
 import { plmc } from "./players-machine.js";
 
+const ENEMY_W = 30;
+const ENEMY_H = 30;
 const ENEMY_PPS = 100;
 const ENEMY_PPF = ENEMY_PPS / FPS;
+const ENEMY_HP = 40;
+
+const ENEMY_APP_POSI_Y = -ENEMY_H;
 
 class Enemy {
-    constructor() {
-        this.x = CAN_W / 2;
-        this.y = CAN_H * 0.3;
-        this.w = 30;
-        this.h = 30;
+    constructor(x) {
+        this.x = x;
+        this.y = ENEMY_APP_POSI_Y;
+        this.w = ENEMY_W;
+        this.h = ENEMY_H;
         this.speed = ENEMY_PPF;
+        this.hp = ENEMY_HP;
+    }
+
+    update() {
+        this.left = this.x - this.w / 2;
+        this.right = this.x + this.w / 2;
+        this.top = this.y - this.h / 2;
+        this.bottom = this.y + this.h / 2;
     }
 
     move() {
@@ -32,15 +45,31 @@ class Enemy {
 
     draw() {
         con.fillStyle = "#ff0000";
-        con.fillRect(this.x - this.w / 2, this.y - this.h / 2, this.w, this.h);
+        con.fillRect(this.left, this.top, this.w, this.h);
+        con.fillStyle = "black";
+        con.fillText(this.hp, this.x, this.y);
+        drawHpGauge(this.x, this.y - this.h * 0.6, this.w, this.h / 4, this.hp / ENEMY_HP);
     }
 }
 
 // let enemy = new Enemy();
-const enemies = [];
+export const enemies = [];
 
 export const updateEnemy = () => {
-    if (frame % FPS === 0) {
-        enemies.push(new Enemy());
+    if (frame % (FPS * 2) === 0) {
+        enemies.push(new Enemy(~~random(0, CAN_W)));
+    }
+
+    let i = 0;
+    while (i < enemies.length) {
+        const enemy = enemies[i];
+        enemy.update();
+        enemy.move();
+        enemy.draw();
+
+        if (enemy.hp <= 0) {
+            enemies.splice(i, 1);
+        }
+        else i++;
     }
 };
