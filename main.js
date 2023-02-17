@@ -17,10 +17,6 @@ function mainLoop() {
 
     updateEnemy();
 
-    for (let i = 0; i < 255; i++) {
-        con.fillStyle = `rgb(${i},${255 - i},0)`;
-        con.fillRect(i, 280, 1, 20);
-    }
 }
 
 setInterval(mainLoop, 1000 / FPS);

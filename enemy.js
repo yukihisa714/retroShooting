@@ -5,7 +5,9 @@ const ENEMY_W = 30;
 const ENEMY_H = 30;
 const ENEMY_PPS = 100;
 const ENEMY_PPF = ENEMY_PPS / FPS;
-const ENEMY_HP = 40;
+const ENEMY_HP = 50;
+const ENEMY_POWER = 10;
+const ENEMY_OFFEND_SPEED = FPS;
 
 const ENEMY_APP_POSI_Y = -ENEMY_H;
 
@@ -17,6 +19,9 @@ class Enemy {
         this.h = ENEMY_H;
         this.speed = ENEMY_PPF;
         this.hp = ENEMY_HP;
+        this.power = ENEMY_POWER;
+        this.offendSpeed = ENEMY_OFFEND_SPEED;
+        this.offendCount = 0;
     }
 
     update() {
@@ -48,11 +53,24 @@ class Enemy {
         con.fillRect(this.left, this.top, this.w, this.h);
         con.fillStyle = "black";
         con.fillText(this.hp, this.x, this.y);
-        drawHpGauge(this.x, this.y - this.h * 0.6, this.w, this.h / 4, this.hp / ENEMY_HP);
+        drawHpGauge(this.x, this.y - this.h * 0.8, this.w, this.h / 10, this.hp / ENEMY_HP);
     }
+
+    inFlictDamage() {
+        plmc.hp -= this.power;
+    }
+
+    isCollisionPlmc = () => {
+        let flg = false;
+        if (this.left <= plmc.x + plmc.w / 2 && plmc.x - plmc.w / 2 <= this.right) {
+            if (this.top <= plmc.y + plmc.h && plmc.y <= this.bottom) {
+                flg = true;
+            }
+        }
+        return flg;
+    };
 }
 
-// let enemy = new Enemy();
 export const enemies = [];
 
 export const updateEnemy = () => {
@@ -66,6 +84,13 @@ export const updateEnemy = () => {
         enemy.update();
         enemy.move();
         enemy.draw();
+
+        if (enemy.isCollisionPlmc()) {
+            enemy.offendCount++;
+            if (enemy.offendCount % enemy.offendSpeed === 1) {
+                enemy.inFlictDamage()
+            }
+        }
 
         if (enemy.hp <= 0) {
             enemies.splice(i, 1);

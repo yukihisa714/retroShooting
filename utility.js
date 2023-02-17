@@ -30,11 +30,15 @@ export const sqrt = x => Math.sqrt(x);
 export const HP_GAUGE_COLORS = ["#ff0000", "cc4400", "448800", "00ff00"];
 
 export const drawHpGauge = (x, y, w, h, ratio) => {
+    const gaugeLeft = x - w / 2;
+    const gaugeTop = y - h / 2
     con.fillStyle = "#dddddd";
-    con.fillRect(x - w / 2, y - h / 2, w, h);
+    con.fillRect(gaugeLeft, gaugeTop, w, h);
+    con.fillStyle = "#111111";
+    con.fillRect(gaugeLeft, gaugeTop, w, h);
     con.fillStyle = `rgb(${255 * (1 - ratio)}, ${255 * ratio}, 0)`;
-    con.fillRect(x - w / 2, y - h / 2, w * ratio, h);
+    con.fillRect(gaugeLeft, gaugeTop, w * ratio, h);
     con.strokeStyle = "#dddddd";
     con.lineWidth = h / 4;
-    con.strokeRect(x - w / 2, y - h / 2, w, h);
+    con.strokeRect(gaugeLeft, gaugeTop, w, h);
 }

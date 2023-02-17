@@ -1,7 +1,8 @@
-import { can, con, FPS, keys } from "./utility.js"
+import { can, CAN_H, CAN_W, con, drawHpGauge, FPS, keys } from "./utility.js"
 
 const PLMC_PPS = 150;
 const PLMC_PPF = PLMC_PPS / FPS;
+const PLMC_HP = 100;
 
 class Plmc {
     constructor() {
@@ -10,6 +11,7 @@ class Plmc {
         this.w = 20;
         this.h = 30;
         this.speed = PLMC_PPF;
+        this.hp = PLMC_HP;
     }
 
     move() {
@@ -43,6 +45,10 @@ class Plmc {
         con.lineTo(this.x - this.w / 2, this.y + this.h);
         con.closePath();
         con.fill();
+        // con.fillStyle = "#ff0000";
+        // con.fillText(this.hp, 10, 30);
+
+        drawHpGauge(CAN_W * 0.5, CAN_H * 0.95, CAN_W * 0.9, CAN_H * 0.05, this.hp / PLMC_HP);
     }
 }
 

@@ -1,6 +1,6 @@
 import { con, keys, sin, cos, random, FPS } from "./utility.js";
 import { plmc } from "./players-machine.js";
-import { enemies, updateEnemy } from "./enemy.js";
+import { enemies } from "./enemy.js";
 
 const MG_BULLET_W = 2;
 const MG_BULLET_H = 6;
@@ -59,13 +59,12 @@ class MgBullet {
             if (enemy.left < this.x && this.x < enemy.right) {
                 if (enemy.top < this.y && this.y < enemy.bottom) {
                     flg = true;
-                    this.inFlictDamage(enemy);
                     break;
                 }
             }
             i++;
         }
-        return flg;
+        return { flg, i };
     }
 }
 
@@ -89,10 +88,12 @@ export const updateMg = () => {
         const bullet = mgBullets[i];
         bullet.draw();
         bullet.move();
+        const collisionFlg = bullet.isCollisionEnemy();
         if (!bullet.isInCanvas()) {
             mgBullets.splice(i, 1);
         }
-        else if (bullet.isCollisionEnemy()) {
+        else if (collisionFlg.flg) {
+            bullet.inFlictDamage(enemies[collisionFlg.i]);
             mgBullets.splice(i, 1);
         }
         else i++;
