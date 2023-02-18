@@ -6,10 +6,10 @@ const STAR_SIZE_MAX = 2.5;
 const GET_RANDOM_STAR_SIZE = () => random(STAR_SIZE_MIN, STAR_SIZE_MAX);
 
 class Star {
-    constructor(x, y, size) {
+    constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.size = size;
+        this.size = GET_RANDOM_STAR_SIZE();
         this.speed = this.size * 15 / FPS;
         this.color = `rgb(${~~random(150, 255)},${~~random(150, 255)},${~~random(150, 255)})`;
     }
@@ -28,8 +28,7 @@ class Star {
 
 const stars = [];
 while (stars.length < STARS_NUM) {
-    const size = GET_RANDOM_STAR_SIZE();
-    stars.push(new Star(random(-size, can.width), random(-size, can.height), size));
+    stars.push(new Star(random(-STAR_SIZE_MAX, can.width), random(-STAR_SIZE_MAX, can.height)));
 }
 
 export const updateStars = () => {
@@ -37,8 +36,7 @@ export const updateStars = () => {
         star.draw();
         star.move();
         if (!star.isInCanvas()) {
-            const size = GET_RANDOM_STAR_SIZE();
-            stars.splice(index, 1, new Star(random(-size, can.width), -size, size));
+            stars.splice(index, 1, new Star(random(-STAR_SIZE_MAX, can.width), -STAR_SIZE_MAX));
         }
     });
 };
