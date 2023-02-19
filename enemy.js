@@ -5,7 +5,7 @@ const ENEMY_W = 30;
 const ENEMY_H = 30;
 const ENEMY_PPS = 100;
 const ENEMY_PPF = ENEMY_PPS / FPS;
-const ENEMY_HP = 50;
+const ENEMY_HP = 25;
 const ENEMY_POWER = 10;
 const ENEMY_OFFEND_SPEED = FPS;
 

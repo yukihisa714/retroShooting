@@ -1,8 +1,9 @@
 import { incrementFrame, FPS, CAN_H, CAN_W, con } from "./utility.js";
 import { updateStars } from "./star.js";
 import { updatePlmc } from "./players-machine.js";
-import { updateMg } from "./weapon.js";
+import { test, updateMg } from "./weapon.js";
 import { updateEnemy } from "./enemy.js";
+import { drawEffects } from "./effect.js";
 
 function mainLoop() {
     incrementFrame();
@@ -17,6 +18,7 @@ function mainLoop() {
 
     updateEnemy();
 
+    drawEffects();
 }
 
 setInterval(mainLoop, 1000 / FPS);

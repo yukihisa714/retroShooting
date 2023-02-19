@@ -1,6 +1,7 @@
 import { con, keys, sin, cos, random, FPS } from "./utility.js";
 import { plmc } from "./players-machine.js";
 import { enemies } from "./enemy.js";
+import { DamageCount, damageCounts } from "./effect.js";
 
 const MG_BULLET_W = 2;
 const MG_BULLET_H = 6;
@@ -10,7 +11,7 @@ const MG_RPM = 300;
 const MG_SPR = ~(FPS / (MG_RPM / 60));
 const MG_MOA = 5;
 
-const MG_DAMAGE = 20;
+const MG_DAMAGE = 10;
 
 class MgBullet {
     constructor(x, y, direction) {
@@ -93,9 +94,28 @@ export const updateMg = () => {
             mgBullets.splice(i, 1);
         }
         else if (collisionFlg.flg) {
-            bullet.inFlictDamage(enemies[collisionFlg.i]);
+            const enemy = enemies[collisionFlg.i];
+            bullet.inFlictDamage(enemy);
+            damageCounts.push(new DamageCount(
+                enemy.x + enemy.w * 0.25,
+                enemy.y - enemy.h * 1,
+                bullet.damage,
+                10,
+                255, 255, 255,
+                0.5
+            ));
+            // console.log(new DamageCount(
+            //     enemy.x + enemy.w * 0.25,
+            //     enemy.y - enemy.h * 1,
+            //     bullet.damage,
+            //     10,
+            //     255, 255, 255,
+            //     0.5
+            // ));
             mgBullets.splice(i, 1);
         }
         else i++;
     }
 };
+
+export const test = [];
