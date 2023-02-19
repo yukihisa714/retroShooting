@@ -45,8 +45,6 @@ class Plmc {
         con.lineTo(this.x - this.w / 2, this.y + this.h);
         con.closePath();
         con.fill();
-        // con.fillStyle = "#ff0000";
-        // con.fillText(this.hp, 10, 30);
 
         drawHpGauge(CAN_W * 0.5, CAN_H * 0.95, CAN_W * 0.9, CAN_H * 0.05, this.hp / PLMC_HP);
     }
