@@ -22,7 +22,7 @@ export class DamageCount {
         const bottom = this.y + this.size / 2;
         const a = `${this.timeCount / this.time}`;
         con.fillStyle = `rgba(${this.rgb},${a})`;
-        con.font = `${this.size}px`;
+        con.font = `${this.size}px sans-serif`;
         con.fillText(this.num, left, bottom);
     }
 }
@@ -46,6 +46,4 @@ const updateDamageCounts = () => {
 
 export const drawEffects = () => {
     updateDamageCounts();
-    con.fillStyle = "white";
-    con.fillText(damageCounts.length, 10, 20);
 };

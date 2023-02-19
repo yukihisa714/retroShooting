@@ -82,6 +82,7 @@ export const updateMg = () => {
     }
     else count = 0;
 
+    con.font = "10px sans-serif";
     con.fillText(mgBullets.length, 10, 10);
 
     let i = 0;
@@ -100,18 +101,10 @@ export const updateMg = () => {
                 enemy.x + enemy.w * 0.25,
                 enemy.y - enemy.h * 1,
                 bullet.damage,
-                10,
+                15,
                 255, 255, 255,
                 0.5
             ));
-            // console.log(new DamageCount(
-            //     enemy.x + enemy.w * 0.25,
-            //     enemy.y - enemy.h * 1,
-            //     bullet.damage,
-            //     10,
-            //     255, 255, 255,
-            //     0.5
-            // ));
             mgBullets.splice(i, 1);
         }
         else i++;

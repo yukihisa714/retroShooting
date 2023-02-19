@@ -52,6 +52,7 @@ class Enemy {
         con.fillStyle = "#ff0000";
         con.fillRect(this.left, this.top, this.w, this.h);
         con.fillStyle = "black";
+        con.font = "10px sans-serif";
         con.fillText(this.hp, this.x, this.y);
         drawHpGauge(this.x, this.y - this.h * 0.8, this.w, this.h / 10, this.hp / ENEMY_HP);
     }

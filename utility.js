@@ -51,8 +51,10 @@ export const drawHpGauge = (x, y, w, h, ratio) => {
     const gaugeTop = y - h / 2
     con.fillStyle = "rgba(0, 0, 0, 0.3)";
     con.fillRect(gaugeLeft, gaugeTop, w, h);
-    con.fillStyle = `rgb(${255 * (1 - ratio)}, ${255 * ratio}, 0)`;
-    con.fillRect(gaugeLeft, gaugeTop, w * ratio, h);
+    if (ratio > 0) {
+        con.fillStyle = `rgb(${255 * (1 - ratio)}, ${255 * ratio}, 0)`;
+        con.fillRect(gaugeLeft, gaugeTop, w * ratio, h);
+    }
     con.strokeStyle = "#dddddd";
     con.lineWidth = h / 4;
     con.strokeRect(gaugeLeft, gaugeTop, w, h);
