@@ -35,14 +35,13 @@ const updateDamageCounts = () => {
         const damageCount = damageCounts[i];
         damageCount.update();
         damageCount.draw();
-        // console.log(0);
-
-        if (damageCount.timeCount === 0) {
+        if (!damageCount.timeCount) {
             damageCounts.splice(i, 1);
         }
         else i++;
     }
 };
+
 
 export const drawEffects = () => {
     updateDamageCounts();

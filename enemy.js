@@ -38,7 +38,6 @@ class Enemy {
         };
 
         const distance = sqrt(different.x ** 2 + different.y ** 2);
-
         const ratio = this.speed / distance;
 
         const moveX = different.x * ratio;

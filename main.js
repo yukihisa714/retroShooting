@@ -1,4 +1,4 @@
-import { incrementFrame, FPS, CAN_H, CAN_W, con } from "./utility.js";
+import { incrementFrame, FPS, CAN_H, CAN_W, con, frame } from "./utility.js";
 import { updateStars } from "./star.js";
 import { updatePlmc } from "./players-machine.js";
 import { test, updateMg } from "./weapon.js";
@@ -19,6 +19,8 @@ function mainLoop() {
     updateEnemy();
 
     drawEffects();
+
+    con.fillText(`frame: ${frame}`, 10, 20);
 }
 
 setInterval(mainLoop, 1000 / FPS);
