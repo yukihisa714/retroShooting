@@ -46,7 +46,7 @@ class Plmc {
         con.closePath();
         con.fill();
 
-        drawHpGauge(CAN_W * 0.5, CAN_H * 0.95, CAN_W * 0.9, CAN_H * 0.05, this.hp / PLMC_HP);
+        drawHpGauge(CAN_W * 0.5, CAN_H * 0.95, CAN_W * 0.6, CAN_H * 0.02, this.hp / PLMC_HP);
     }
 }
 

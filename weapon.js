@@ -1,4 +1,4 @@
-import { con, keys, sin, cos, random, FPS } from "./utility.js";
+import { con, keys, sin, cos, random, FPS, CAN_W, CAN_H } from "./utility.js";
 import { plmc } from "./players-machine.js";
 import { enemies } from "./enemy.js";
 import { DamageCount, damageCounts } from "./effect.js";
@@ -12,6 +12,9 @@ const MG_SPR = ~(FPS / (MG_RPM / 60));
 const MG_MOA = 5;
 
 const MG_DAMAGE = 10;
+
+const MG_BULLETS_MAX = 999;
+let mgBulletsNum = MG_BULLETS_MAX;
 
 class MgBullet {
     constructor(x, y, direction) {
@@ -77,7 +80,10 @@ export const updateMg = () => {
     if (keys[" "]) {
         count++;
         if (count % MG_SPR === 1) {
-            mgBullets.push(new MgBullet(plmc.x, plmc.y, random(-MG_MOA / 2, MG_MOA / 2)));
+            if (mgBulletsNum) {
+                mgBullets.push(new MgBullet(plmc.x, plmc.y, random(-MG_MOA / 2, MG_MOA / 2)));
+                mgBulletsNum--;
+            }
         }
     }
     else count = 0;
@@ -109,6 +115,10 @@ export const updateMg = () => {
         }
         else i++;
     }
+
+    // con.fillStyle = "#ffffff";
+    // con.font = "8px sans-serif"
+    // con.fillText(`${mgBulletsNum} / ${MG_BULLETS_MAX}`, CAN_W * 0.05, CAN_H * 0.96);
 };
 
 export const test = [];
