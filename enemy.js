@@ -1,5 +1,6 @@
 import { CAN_H, CAN_W, con, drawHpGauge, FPS, frame, random, sqrt } from "./utility.js";
 import { plmc } from "./players-machine.js";
+import { ScreenEffect, screenEffects } from "./effect.js";
 
 const ENEMY_W = 30;
 const ENEMY_H = 30;
@@ -58,6 +59,7 @@ class Enemy {
 
     inFlictDamage() {
         plmc.hp -= this.power;
+        screenEffects.push (new ScreenEffect(255, 0, 0, 0.5));
     }
 
     isCollisionPlmc = () => {

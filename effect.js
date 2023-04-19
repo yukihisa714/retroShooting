@@ -53,11 +53,11 @@ export class ScreenEffect {
     }
 
     update() {
-        this.count--;
+        this.frameCount--;
     }
 
     draw() {
-        con.fillStyle = `rgba(${r},${g},${b},${this.frame / this.frameCount * 255})`;
+        con.fillStyle = `rgba(${this.r},${this.g},${this.b},${this.frameCount / this.frame})`;
         con.fillRect(0, 0, CAN_W, CAN_H);
     }
 }
@@ -70,7 +70,7 @@ const updateScreenEffects = () => {
         const screenEffect = screenEffects[i];
         screenEffect.update();
         screenEffect.draw();
-        if (screenEffect.frameCount) {
+        if (!screenEffect.frameCount) {
             screenEffects.splice(i, 1);
         }
         else i++;
