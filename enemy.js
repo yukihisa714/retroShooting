@@ -76,6 +76,7 @@ class Enemy {
 export const enemies = [];
 
 
+
 export const updateEnemy = () => {
     if (frame % (FPS * 2) === 0) {
         enemies.push(new Enemy(~~random(0, CAN_W)));
